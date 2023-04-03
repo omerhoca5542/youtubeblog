@@ -1,0 +1,31 @@
+﻿
+@model List<ArticleDTO> 
+@*dto data transfer object demektir*@
+@* modelimizi oluşturalım liste şeklinde verileri alıcaz 
+türü de article olacak* .burada article entitysine ulaşmak için de wiewports.cshtml
+de bunun using dosyasını çağırdık.orda hangi entitye ulaşcaksak toplu halde hepsini
+oraya yazıyoruz daha derli toplu olauyor*@
+
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>DEFAULT AREASI İÇERİSİNDESİNİZ</h1>
+<br />
+<br />
+<br />
+@*NOT: Microsoft.AspNetCore.Mvc.Razor.Runtime nugetini Blogweb katmanına ekledik.Nedir bu nugetin amacı  
+
+ındex sayfalarında yada cshtml sayfasında yaptığımız değişikliği sayfada yenile dediğimizde anında görmek için *@
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@foreach (var item in Model)
+{
+    <h1> @item.Title</h1><br />
+    @*<h1>@item.Content</h1><br />*@
+    <h1>@item.CreatedBy</h1>
+}

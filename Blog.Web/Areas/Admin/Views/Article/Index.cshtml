@@ -1,0 +1,64 @@
+﻿@using Blog.Entity.DTOS.Articles
+@model List<ArticleDTO>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Makale Yönetimi /</span> Makaleler</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        
+        <div class="table-responsive text-nowrap m-5">
+            @* yukarıdaki m-5 margin yani tablo için dış boşluk 5 piksel verdik.eğer
+                bunu p-5 deseydik padding yani içi boşluk olacaktı
+            *@
+            <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="Article" asp-action="Add">
+           @* buton clası içindeki mb-3 demek margin bottom 3 piksel yap demek*@
+                Makale Ekle <i class="bx bx-plus" > </i>
+            @* i tagı Makale ekle butonumuza plus özelliği ile artı ekliyor*@
+
+            </a>
+            <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
+                @*cellcpacing hücreler arası boşluğu belirler. 
+
+                Cellpadding : Hücre içi marj değerini belirler. Cellpadding 
+                değeri 0 olursa hücre içinde bulunan unsur bitişik olur.*@
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Oluşturan</th>
+                        <th>Durum</th>
+                        <th>İşlemler</th>
+                    </tr>
+                    </thead>
+                
+                
+                <tbody class="table-border-bottom-0">
+                   @foreach (var article in Model)
+                    {
+                       <tr name="@article.Id" >@*// tablo ismini ıD aldık*@
+                        <td> @article.Title</td>
+                        <td>@article.Category.Name</td>@*// burda category aslında 
+                        category.dto sınıfındaki nesnemizin ismi onunla name özelliğini aldık*@
+                        <td>@article.CreatedDate</td>
+                        <td>@article.CreatedBy</td>
+                        <td>@(article.IsDeleted? "Aktif değil":"Aktif")</td>
+                      @*  // yukarda şunu yaptık eğer değer silinmişse ve ya silinmemişse diye
+                        iki bölüm tanımladık if -else gibi *@
+                        <td></td>
+                       </tr> 
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>
+@section Scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+    @* java dosyasının yolunu ve tip değerlerini girdik ecmascript ise java ile 
+        çalışan bir modül türü
+    *@
+
+}
