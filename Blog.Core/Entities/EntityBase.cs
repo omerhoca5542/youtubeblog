@@ -17,9 +17,9 @@ namespace Blog.Core.Entities
         public virtual Guid Id { get; set; } = Guid.NewGuid();// guid benzersiz demek benzersiz ıd  oluşturmak için kullanıyoruz
         public virtual string CreatedBy { get; set; } = "Undifined";
         // createdbye kısmını undifened yani tanımsız yaptık
-        public virtual string? DeletedBy { get; set; }// koduğumuz soru işaretleri o alanların nullable yani boş bırakılabilir anlamına gelir
+      
         public virtual string? ModifiedBy { get; set; }
-       
+        public virtual string? DeletedBy { get; set; }// koduğumuz soru işaretleri o alanların nullable yani boş bırakılabilir anlamına gelir
         public virtual DateTime CreatedDate { get; set; }= DateTime.Now;
         //datetime.now  ile tarih otomatik olarak şimdiki zamanın tarihi oluyor
         public virtual DateTime? DeletedDate { get; set; }

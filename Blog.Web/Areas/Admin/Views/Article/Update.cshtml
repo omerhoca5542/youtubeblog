@@ -1,0 +1,70 @@
+﻿@model ArticleUpdateDTO
+@*model olarak ArticleUpdateDTO sayfasını aldım
+*@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Makale Yönetimi /</span> Basic Makale Ekle</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header"></h5>
+                <form asp-controller="Article" asp-action="Update" method="post" enctype="multipart/form-data">
+                    @* Makele ekleme işleminde form oluşturduk çünkü post ile veri göndericez
+                    burada controller ve actıonresult kısmını girdik enctype ile
+                    multipartdata yaparak ımage de gönderebilicez
+                    *@
+                    <div asp-validation-summary="ModelOnly"></div>
+                    @* bi üstteki kod ile validasyon işlemlerini başlattık*@
+                    <div class="card-body">
+                       <input type="hidden" asp-for="Id" />
+                       @*DİKKAT!! yukardaki kodun önemi şu eğer Id yi göndermezsek yaptığımız
+değişiklikler Id olmadığından gerçekleşmez.hidden ile bu işlemi gizli yani forma göstermeden
+gönderiyoruz
+                       *@
+                        <div class="form-group">
+                            <label asp-for="CategoryId ">Kategori</label>
+                            <select id="categoryList" class="form-control" asp-for="CategoryId"
+                                    asp-items="@(new SelectList(Model.Categories ,"Id","Name" )) "> </select>
+                            @* id değerini clasını girdik burda  categoryId değerine göre verilerimizi alıcaz asp-items kısmında
+                            selectlist ile yukarıda en üstte modelden gelen yani articleadddto dan gelen
+                            Categories ile  selectvalue için Id textfiled içinde
+                            Name isimlerini girdik. Burda dikkat edilmesi gereken bu iki ismin categorydto deki alanlarla aynı
+                            isme sahip olması gerekir
+                            artık bir kategori listesi dönmemiz gerektiğini söylemiş olduk
+                            *@
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            @*categoryıd ye göre validasyon işlemleri gerçekleştirdik.  *@
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Title" id="defaultFormControlInput" class="form-label">Başlık</label>
+                            <input asp-for="Title" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Lütfen başlık giriniz" aria-describedby="defaultFormControlHelp">
+                            @* class kısmında mb-3 diyerek text alanlarının altına boşluk verdik*@
+                            <span asp-validation-for="Title" class="text-danger"></span>@*categoryıd ye göre validasyon işlemleri yani yanlış varsa onları göstersin istedik örnek Title 2 karakterden
+                            az girilmiş ise hata versin*@
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Content" for="defaultFormControlInput" class="form-label">İçerik</label>
+<textarea asp-for=" Content" type="text" class="form-control mb-3" id="defaultFormControlInput" style="min-height:300px;" placeholder="İçerik Giriniz" aria-describedby="defaultFormControlHelp">
+</textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+
+                        </div>
+                        @*content yapmamızın amacı içerik olduğunu belirtmek*@
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Kaydet
+                            </button>
+                            @* tüm bloğu kaplıcak şekilde buton oluşturduk*@
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

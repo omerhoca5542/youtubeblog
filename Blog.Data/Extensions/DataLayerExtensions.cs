@@ -2,6 +2,8 @@
 using Blog.Data.Repositories.Abstractions;
 using Blog.Data.Repositories.Concretes;
 using Blog.Data.UnitOfWorks;
+using Blog.Entity.Entities;
+using FluentValidation;// AddValidatorsFromAssemblyContaining sınıfını kullanmak için çağırdık
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,7 @@ namespace Blog.Data.Extensions
             // addscope ırepositoryden çağırınca repositoryden nesneyi almak typeof da tek tek almak yerine hepsini alabilmemizi sağlamak amacı güder
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();// her Iunitofwork istendiğinde unitofwork verilecek
+            
             return services;
 
         }

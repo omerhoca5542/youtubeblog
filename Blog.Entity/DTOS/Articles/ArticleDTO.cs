@@ -13,7 +13,7 @@ namespace Blog.Entity.DTOS.Articles//DTO yapısını kullanmamızın sebebi şu 
     {
         public Guid Id{ get; set; }
         public string Title { get; set; }
-        
+        public string Content   { get; set; }
         public   CategoryDTO Category  { get; set; }
         // categoryDTO  sınıfında şuan  sadece Name kısmı olduğundan ben bu kısmı kullanmak istiyorum ve direkt category dto sınıfından Category ismiyle tanımlama yapıyorum 
       

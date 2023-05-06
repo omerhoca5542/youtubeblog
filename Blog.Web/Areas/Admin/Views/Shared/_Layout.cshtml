@@ -408,8 +408,11 @@
     <script src="~/sneat-teması/assets/js/dashboards-analytics.js"></script>
     @await RenderSectionAsync("Scripts",false);
     @* yukardaki kodda Article sayfamıza ait olan Index sayfamıza  java script sayfası
-        eklediğimizden onu burda böyle belirttik
-    *@
+    eklediğimizden onu burda böyle belirttik*@
+    @await Component.InvokeAsync("NToastNotify")
+@* bir üstteki kısım da ise  toaster yapısını kullandık.Toaster bizim validasyonlarımız sonucu doğrulama işlemi 
+
+gerçekleşirse başarı mesajlarını içeren kutucuklar*@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>

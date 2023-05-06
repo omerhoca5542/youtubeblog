@@ -17,7 +17,7 @@ namespace Blog.Data.Context
         // alttaki constructure(yapıcı sınıfın ) kısayolu ctor yazdıktan sonra çift tık yapmaktır
        
         // yukardaki db context sınıfı üzerinden ctrl. ile alttaki metodu oluşturduk
-        public AppDbContext(DbContextOptions options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             // burdaki constructure da dbcontext optionu kullanıcamızı anlattık. ve bunu da program cs de belirticez 
          

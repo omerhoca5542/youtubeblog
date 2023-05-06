@@ -11,7 +11,7 @@ namespace Blog.Entity.DTOS.Categories
     {
         public Guid Id { get; set; }
         // Id değeri de kategory çağırırken kullanılır hangi kategory yi çağıracağımızı Id sinden belirleriz.Tabi karşımıza Name kısmı çıksa da sonuçta Id değerine göre çağırma işlemi yapılır
-        public string Name { get; set; }
+        public string ?Name { get; set; }
     }
     //sadece name kısmını aldık şimdilik.bunu Article .DTO DA ÇAĞIRICAZ
     // burada mapleme işmeinin nimetini kullandık yani category  tablosundan sadece

@@ -25,7 +25,7 @@ namespace Blog.Data.Mapping
             Content=".net core 6 uygulamalarını anlatmış olucaz ",
             WiewCount=15,
           CategoryId= Guid.Parse("{C5D8CD84-F517-438F-BAF4-E691F37088FB}"),
-                ImageId= Guid.Parse("{942E2D1F-DDCF-4578-BE0A-016F0DAC1E65}"),
+          ImageId= Guid.Parse("{942E2D1F-DDCF-4578-BE0A-016F0DAC1E65}"),
 
                 CreatedBy = "deniz",
                 CreatedDate = DateTime.Now,

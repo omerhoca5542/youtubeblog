@@ -14,6 +14,10 @@ namespace Blog.Service.AutoMapper.Articles
         public ArticleProfile()
         {
             CreateMap<ArticleDTO,Article>().ReverseMap();// Createmap mapleme fonksiyonu. ArticleDTO ile Article arasında birbirlerinden mapleme yapmak içinde ReverseMap komutunu kullandık
+            CreateMap<ArticleUpdateDTO,Article>().ReverseMap();
+            CreateMap<ArticleUpdateDTO,ArticleDTO>().ReverseMap();
+            //direkt dto lar üzerinden veri alışverişi yaptığımızdan articleupdatedto dan direk article la çeviri yapamadığımızdan birde ArticleUpdateDTO dan ArticleDTO ya çeviri yaptık
+            CreateMap<ArticleAddDTO, Article>().ReverseMap();
         }
     }
 }

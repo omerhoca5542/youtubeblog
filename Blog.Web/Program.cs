@@ -1,6 +1,4 @@
 
-
-
 using Blog.Data.Context;
 using Blog.Data.Extensions;
 using Blog.Entity.Entities;
@@ -9,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;// ToastrOptions sýnýfýný kullanmak için ekledik bu usingi
 using System.Reflection;
 //Startup.cs proje ilk run edildiðinde çalýþan kod satýrlarýnýn bulunduðu sýnýftýr. Bizde proje ilk run edildiðinde ilgili kullanýlan baðýmlýlýklarý register edeceðiz. Startup.cs de bulunan ConfigureServices adlý metot register iþlemlerini yapmak için default gelen bir metottur.
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +16,15 @@ var assembly = Assembly.GetExecutingAssembly().FullName;// assemblu-y bulunan ka
 builder.Services.LoadDataExtensions(builder.Configuration);
 builder.Services.LoadServiceLayerExtension();
 // buradaki LoadData Eztension Program.cs'de de tanýmlandý
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews()
+    //Toaster bizim validasyonlarýmýz sonucu doðrulama iþlemi gerçekleþirse baþarý mesajlarýný içeren kutucuklarý içeren bir yapý kullanýcaz bu yüzden burda bu yapýyý oluþturuyoruz. Bir de bu yapýyý kullanmak için blog.webden nugget olarak NToastNotify i kurduk.
+    .AddNToastNotifyToastr(new ToastrOptions()    {
+
+        PositionClass=ToastPositions.TopRight,// mesaj kutusunun konumunu sað üst köþe yaptýk
+        TimeOut=3000// mesaj kutusunun bekleme süresini koyuyoruz   
+    } )
+    .AddRazorRuntimeCompilation();
+
 builder.Services.AddSession();// oturum ekleme servisini ekledik
 // .addrazorruntimecomp komutuynu þü yüzden ekledik blogweb kýsmýna nuget olarak Microsoft.AspNetCore.Mvc.Razor.Runtime nugetini ekledik burda da bu kodu aktif hale getirdik.Nedir bu nugetin amacý  ýndex sayfalarýnda yada cshtml sayfasýnda yaptýðýmýz deðiþikliði sayfada yenile dediðimizde anýnda görmek için 
 
@@ -66,7 +73,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+//ASP.NET Core'da ara katman (Middleware) yapýsý, uygulama çalýþtýðýnda bir istemciden (Client) gelen taleplerin (Request) istemciye geri döndürülmesi (Response) sürecindeki iþlemleri gerçekleþtirmek ve sürece yön vermek için kullanýlmaktadýr.
+app.UseNToastNotify();//Toaster bizim validasyonlarýmýz sonucu doðrulama iþlemi gerçekleþirse baþarý mesajlarýný içeren kutucuklardý.Biz burda middleware kýsmýný hallettik
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
